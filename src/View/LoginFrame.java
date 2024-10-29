@@ -3,12 +3,11 @@ package View;
 import Control.LoginControl;
 import java.awt.Color;
 
-
 public class LoginFrame extends javax.swing.JFrame {
 
-     static LoginFrame lf = new LoginFrame();
+    static LoginFrame lf = new LoginFrame();
 
-    public LoginFrame(){
+    public LoginFrame() {
         initComponents();
     }
 
@@ -70,9 +69,19 @@ public class LoginFrame extends javax.swing.JFrame {
                 txtUserNameActionPerformed(evt);
             }
         });
+        txtUserName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserNameKeyPressed(evt);
+            }
+        });
 
         txtPassword.setFont(new java.awt.Font("Poppins Light", 0, 18)); // NOI18N
         txtPassword.setToolTipText("Enter Password");
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
 
         btnLogin.setBackground(new java.awt.Color(255, 153, 153));
         btnLogin.setFont(new java.awt.Font("Poppins Light", 1, 18)); // NOI18N
@@ -164,19 +173,45 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginMouseExited
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-         LoginControl lc = new LoginControl();
+        LoginControl lc = new LoginControl();
         String username = txtUserName.getText();
         String pass = txtPassword.getText();
-        lc.login(username, pass,lf);
+        lc.login(username, pass, lf);
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            LoginControl lc = new LoginControl();
+            String username = txtUserName.getText();
+            String pass = txtPassword.getText();
+            lc.login(username, pass, lf);
+        }
+
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_UP) {
+            txtUserName.requestFocus();
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void txtUserNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            LoginControl lc = new LoginControl();
+            String username = txtUserName.getText();
+            String pass = txtPassword.getText();
+            lc.login(username, pass, lf);
+        }
+
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_DOWN) {
+            txtPassword.requestFocus();
+        }
+    }//GEN-LAST:event_txtUserNameKeyPressed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(() -> {
-            lf .setVisible(true);
+            lf.setVisible(true);
         });
     }
 
